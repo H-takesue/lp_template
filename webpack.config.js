@@ -77,7 +77,7 @@ const config = {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 plugins: [
                     ImageminMozjpeg({ quality: 80 }),
-                    ImageminPngquant({ quality: '65-80' }),
+                    ImageminPngquant({ quality: [.65, .80] }),
                     ImageminGifsicle(),
                     ImageminSvgo()
                 ]
