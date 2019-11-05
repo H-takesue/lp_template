@@ -93,9 +93,9 @@ const config = {
 
 module.exports = (env, argv) => {
     if (argv.mode === 'development') {
-        config.output =  {
+        config.output = {
             filename: "js/bundle.js",
-                path: __dirname + argv.mode ===  "/dist/"
+            path: __dirname + "/dist/"
         };
     }
     return config;
