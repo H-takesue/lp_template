@@ -1,0 +1,38 @@
+{
+  "scripts": {
+    "dev-webpack": "webpack --mode development",
+    "dev:watch-webpack": "yarn run dev-webpack && chokidar 'src/**/{*.js,*.scss}' -c 'yarn run dev-webpack' -p",
+    "dev:watch-static": "chokidar 'src/**/{*.html,*.eot,*.gif,*.svg,*.ttf,*.woff,*.jpg,*.png,*.css}' -c 'yarn run dev-webpack' -p",
+    "serve": "browser-sync start --server ./dist/",
+    "dev": "rm -rf ./dist && concurrently \"yarn run dev:watch-webpack\" \"yarn run dev:watch-static\" \"yarn run serve\"",
+    "build": "rm -rf ./build && webpack --mode production "
+  },
+  "dependencies": {
+    "browser-sync": "^2.26.7",
+    "chokidar": "^3.3.0",
+    "concurrently": "^5.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "imagemin-gifsicle": "^6.0.1",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "imagemin-svgo": "^7.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "autoprefixer": "^9.7.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^2.2.1"
+  }
+}
