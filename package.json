@@ -2,7 +2,7 @@
   "scripts": {
     "dev-webpack": "webpack --mode development",
     "dev:watch-webpack": "yarn run dev-webpack && chokidar 'src/**/{*.js,*.scss}' -c 'yarn run dev-webpack' -p",
-    "dev:watch-static": "chokidar 'src/**/{*.html,*.eot,*.gif,*.svg,*.ttf,*.woff,*.jpg,*.png,*.css}' -c 'yarn run dev-webpack' -p",
+    "dev:watch-static": "yarn run chokidar 'src/**/{*.html,*.eot,*.gif,*.svg,*.ttf,*.woff,*.jpg,*.png,*.css}' -c 'yarn run dev-webpack' -p",
     "serve": "browser-sync start --server ./dist/",
     "dev": "rm -rf ./dist && concurrently \"yarn run dev:watch-webpack\" \"yarn run dev:watch-static\" \"yarn run serve\"",
     "build": "rm -rf ./build && webpack --mode production "
@@ -10,6 +10,7 @@
   "dependencies": {
     "browser-sync": "^2.26.7",
     "chokidar": "^3.3.0",
+    "chokidar-cli": "^2.1.0",
     "concurrently": "^5.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "imagemin-gifsicle": "^6.0.1",
