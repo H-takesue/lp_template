@@ -16,7 +16,7 @@ const config = {
     ],
     output: {
         filename: "js/bundle.js",
-        path: __dirname + "/build/"
+        path: __dirname + "/build/",
     },
     module: {
         rules: [
@@ -36,11 +36,13 @@ const config = {
                         loader: "postcss-loader",
                         options: {
                             sourceMap: false,
-                            plugins: [
-                                require("autoprefixer")({
-                                    grid: true,
-                                })
-                            ]
+                            postcssOptions: {
+                                plugins: [
+                                    require("autoprefixer")({
+                                        grid: true,
+                                    })
+                                ]
+                            }
                         }
                     },
                     {
@@ -52,36 +54,34 @@ const config = {
     },
     plugins: [
         new MiniCssExtractPlugin({filename: 'css/[name].css'}),
-        new CopyWebpackPlugin(
-            [
+        new CopyWebpackPlugin({
+            patterns: [
                 {
                     from: './',
                     to: './',
-                    ignore: [
-                        '!*.html'
-                    ]
+                    globOptions: {
+                        ignore: [
+                            '!*.html'
+                        ],
+                    },
+                    context: 'src/'
                 },
-            ],
-            { context: 'src/' }
-        ),
-        new CopyWebpackPlugin(
-            [
                 {
                     from: './',
                     to: 'img/',
+                    context: 'src/img'
                 },
-            ],
-            { context: 'src/img' }
-        ),
+            ]
+        }),
         new ImageminPlugin({
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                plugins: [
-                    ImageminMozjpeg({ quality: 80 }),
-                    ImageminPngquant({ quality: [.65, .80] }),
-                    ImageminGifsicle(),
-                    ImageminSvgo()
-                ]
-            },)
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            plugins: [
+                ImageminMozjpeg({quality: 80}),
+                ImageminPngquant({quality: [.65, .80]}),
+                ImageminGifsicle(),
+                ImageminSvgo()
+            ]
+        },)
     ],
     optimization: {
         minimizer: [
